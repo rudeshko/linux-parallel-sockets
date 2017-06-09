@@ -21,12 +21,11 @@ class Socket implements MessageComponentInterface {
                 print "Could not fork!\n";
                 exit;
             case 0:
-                sleep(5);
-                $from->send("Response: ".$msg);
-                $from->send("Response: ".$msg);
-                $from->send("Response: ".$msg);
-                $from->send("Response: ".$msg);
-                $from->send("Response: ".$msg);
+                sleep(3);
+
+                for($i = 0; $i < 100; $i++){
+                    $from->send("Response: ".$msg);
+                }
                 break;
             default:
         }

@@ -22,7 +22,9 @@ class Socket implements MessageComponentInterface {
                 exit;
             case 0:
                 print "- Delay!\n";
-                sleep(10);
+                sleep(5);
+                $from->send("Response: ".$msg);
+                sleep(5);
                 print "- Finished Reading!\n";
                 break;
             default:

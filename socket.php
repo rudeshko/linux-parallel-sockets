@@ -14,7 +14,20 @@ class Socket implements MessageComponentInterface {
 
     public function onMessage(ConnectionInterface $from, $msg) {
         echo $msg."\n";
-        sleep(10);
+
+        $pid = pcntl_fork();
+        switch($pid) {
+            case -1:
+                print "Could not fork!\n";
+                exit;
+            case 0:
+                print "- Delay!\n";
+                sleep(10);
+                print "- Finished Reading!\n";
+                break;
+            default:
+                print "- Continue reading...\n";
+        }
     }
 
     public function onClose(ConnectionInterface $conn) {

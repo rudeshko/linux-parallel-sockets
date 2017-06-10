@@ -19,7 +19,6 @@ class Socket implements MessageComponentInterface {
         if(!$pid){
             sleep(10);
             $from->send("Response: ".$msg);
-            break;
         }
     }
 

@@ -16,15 +16,10 @@ class Socket implements MessageComponentInterface {
         echo $msg."\n";
 
         $pid = pcntl_fork();
-        switch($pid) {
-            case -1:
-                print "Could not fork!\n";
-                exit;
-            case 0:
-                sleep(10);
-                $from->send("Response: ".$msg);
-                break;
-            default:
+        if(!$pid){
+            sleep(10);
+            $from->send("Response: ".$msg);
+            break;
         }
     }
 
